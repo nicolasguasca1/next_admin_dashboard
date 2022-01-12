@@ -13,6 +13,7 @@ import { Menu, MenuRefObject } from '@paljs/ui/Menu';
 import Link from 'next/link';
 import menuItems from './menuItem';
 import SEO, { SEOProps } from 'components/SEO';
+import Image from 'next/image';
 
 const getDefaultTheme = (): DefaultTheme['name'] => {
   if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -112,7 +113,15 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
                 <LayoutColumns>
                   <LayoutColumn className="main-content">{children}</LayoutColumn>
                 </LayoutColumns>
-                {!authLayout && <LayoutFooter>Footer</LayoutFooter>}
+                {!authLayout && (
+                  <LayoutFooter>
+                    <Link href="/">
+                      <a className="logo">
+                        <Image alt="logo" src="/icons/icon-410x158.png" width={205} height={79} />
+                      </a>
+                    </Link>
+                  </LayoutFooter>
+                )}
               </LayoutContent>
             </LayoutContainer>
           </Layout>
